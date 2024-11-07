@@ -14,7 +14,7 @@
  */
 function commerce_custom_product_line_item_type_edit($type) {
   $line_item_type = commerce_line_item_type_load($type);
-  return drupal_get_form('commerce_custom_product_line_item_type_form', $line_item_type);
+  return backdrop_get_form('commerce_custom_product_line_item_type_form', $line_item_type);
 }
 
 /**
@@ -99,10 +99,10 @@ function commerce_custom_product_line_item_type_form_submit($form, &$form_state)
 
   // Display a message and redirect to the line item type overview table.
   if ($op) {
-    drupal_set_message(t('%name line item type saved.', array('%name' => $line_item_type['name'])));
+    backdrop_set_message(t('%name line item type saved.', array('%name' => $line_item_type['name'])));
   }
   else {
-    drupal_set_message(t('Saving the line item type was prevented by an error.', 'error'));
+    backdrop_set_message(t('Saving the line item type was prevented by an error.'), 'error');
   }
 
   $form_state['redirect'] = 'admin/commerce/config/line-items';
@@ -150,6 +150,6 @@ function commerce_custom_product_line_item_type_delete_form_submit($form, &$form
   commerce_custom_product_line_item_type_delete($line_item_type['type']);
 
   // Display a message and redirect to the line item type overview table.
-  drupal_set_message(t('The %name line item type has been deleted.', array('%name' => $line_item_type['name'])));
+  backdrop_set_message(t('The %name line item type has been deleted.', array('%name' => $line_item_type['name'])));
   $form_state['redirect'] = 'admin/commerce/config/line-items';
 }
